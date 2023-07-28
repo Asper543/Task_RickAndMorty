@@ -14,15 +14,20 @@ import javax.inject.Singleton
 @Singleton
 class LocationDetailViewModel  @Inject constructor(private val repository: RickAndMortyRepository):ViewModel(){
 
-    private val _locationDetailData = MutableLiveData<LocationDescription>()
+    private val _locationDetailData = MutableLiveData<LocationDescription?>()
     private val _charactersData = MutableLiveData<List<Character>?>()
 
-    val locationDetailData: LiveData<LocationDescription>
+    val locationDetailData: LiveData<LocationDescription?>
         get() = _locationDetailData
 
     val charactersData
     : LiveData<List<Character>?>
         get() = _charactersData
+
+    fun cleared(){
+        _charactersData.value = null
+        _locationDetailData.value = null
+    }
 
     fun loadLocation(id: Int) {
         viewModelScope.launch {

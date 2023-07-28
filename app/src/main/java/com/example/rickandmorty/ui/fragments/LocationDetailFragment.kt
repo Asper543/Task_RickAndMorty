@@ -20,6 +20,7 @@ class LocationDetailFragment:Fragment() {
     lateinit var model:LocationDetailViewModel
     override fun onAttach(context: Context) {
         (context.applicationContext as RickAndMortyApplication).appComponent.inject(this)
+        model.cleared()
         super.onAttach(context)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +51,11 @@ class LocationDetailFragment:Fragment() {
              if (it!=null)adapterList.setList(it)
         }
         model.locationDetailData.observe(this){
-            name.text= it.locationName
-            type.text= it.locationType
-            dimension.text = it.locationDimension
+            it?.let {
+                name.text= it.locationName
+                type.text= it.locationType
+                dimension.text = it.locationDimension
+            }
         }
     }
 }

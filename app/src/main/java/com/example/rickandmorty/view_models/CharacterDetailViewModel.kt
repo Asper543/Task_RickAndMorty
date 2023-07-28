@@ -15,14 +15,18 @@ import javax.inject.Singleton
 @Singleton
 class CharacterDetailViewModel @Inject constructor(private val repository: RickAndMortyRepository) :
     ViewModel() {
-    private val _characterDetailData = MutableLiveData<Character>()
+    private val _characterDetailData = MutableLiveData<Character?>()
     private val _episodesData = MutableLiveData<List<EpisodeDescription>?>()
 
-    val characterDetailData: LiveData<Character>
+    val characterDetailData: LiveData<Character?>
         get() = _characterDetailData
 
     val episodesData: LiveData<List<EpisodeDescription>?>
         get() = _episodesData
+    fun cleared(){
+        _characterDetailData.value = null
+        _episodesData.value = null
+    }
 
     fun loadCharacter(id: Int) {
         viewModelScope.launch {

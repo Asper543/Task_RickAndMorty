@@ -23,6 +23,7 @@ class CharacterDetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         (context.applicationContext as RickAndMortyApplication).appComponent.inject(this)
+        model.cleared()
         super.onAttach(context)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +54,13 @@ class CharacterDetailFragment : Fragment() {
             if (it!=null)adapterList.setList(it)
         }
         model.characterDetailData.observe(this){
-            Glide.with(view).load(it.image).circleCrop().into(image)
-            name.text= it.name
-            gender.text=it.gender
-            species.text= it.species
-            origin.text = it.originInfo.name
+            it?.let {
+                Glide.with(view).load(it.image).circleCrop().into(image)
+                name.text= it.name
+                gender.text=it.gender
+                species.text= it.species
+                origin.text = it.originInfo.name
+            }
         }
     }
 }
