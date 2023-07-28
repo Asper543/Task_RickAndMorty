@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/tabFragment"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/tabFragment"
+        android:label="@string/tab_label"
+        android:name="com.example.rickandmorty.ui.fragments.TabViewPagerFragment"
+        tools:layout="@layout/tab_view_pager"
+        />
+        <action android:id="@+id/to_character_details"
+            app:destination="@id/character_detail_fragment"
+            />
+    <action android:id="@+id/to_location_details"
+        app:destination="@id/location_detail_fragment"
+        />
+
+    <fragment
+        android:id="@+id/character_detail_fragment"
+        android:label="@string/characters_label"
+        android:name="com.example.rickandmorty.ui.fragments.CharacterDetailFragment"
+        tools:layout="@layout/character_details_item"
+        />
+
+    <fragment
+        android:id="@+id/location_detail_fragment"
+        android:label="@string/locations_label"
+        android:name="com.example.rickandmorty.ui.fragments.LocationDetailFragment"
+        tools:layout="@layout/location_details_item"
+        />
+
+</navigation>

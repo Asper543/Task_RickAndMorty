@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RickAndMorty</string>
+    <string name="tab_label">Rick and Morty</string>
+    <string name="characters_label">Characters</string>
+    <string name="locations_label">Locations</string>
+    <string name="name">Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="species">Species:</string>
+    <string name="origin">Origin:</string>
+    <string name="episodes_title">Episodes…</string>
+    <string name="type">Type</string>
+    <string name="dimension">Dimension</string>
+    <string name="residents_title">Residents…</string>
+    <string name="date">24.05.2023</string>
+</resources>
