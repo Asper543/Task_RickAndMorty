@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.repository.RickAndMortyRepository
 import com.example.rickandmorty.repository.data_models.Character
 import com.example.rickandmorty.repository.data_models.EpisodeDescription
-import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,18 +29,17 @@ class CharacterDetailViewModel @Inject constructor(private val repository: RickA
 
     fun loadCharacter(id: Int) {
         viewModelScope.launch {
-            repository.getCharacterById(id).map { character ->
-                _characterDetailData.value = character
-                val list = character.episode.asSequence()
+            repository.getCharacterById(id).map { characterNext ->
+                _characterDetailData.value = characterNext
+                val list = characterNext.episode.asSequence()
                     .take(5)
                     .map { it.last() }
                     .filter { char -> char.isDigit() }
                     .map { it.digitToInt() }
                     .toList()
                 repository.getEpisodeDescriptionList(list).map { episodes->
-                _episodesData.value = episodes
+                    _episodesData.value = episodes
                 }
-                joinAll()
             }
         }
     }

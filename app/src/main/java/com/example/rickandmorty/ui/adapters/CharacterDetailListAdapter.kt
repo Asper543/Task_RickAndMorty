@@ -38,6 +38,7 @@ class CharacterDetailListAdapter(private val context: Context) : BaseAdapter() {
 
     fun setList(newDataList: List<EpisodeDescription>) {
         dataList = newDataList
+        notifyDataSetChanged()
     }
 
 }

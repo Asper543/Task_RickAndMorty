@@ -36,4 +36,5 @@ sealed class Try<out A> {
             is Failure -> this
             is Success -> f(value)
         }
+
 }

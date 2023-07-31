@@ -32,7 +32,6 @@ class LocationDetailListAdapter(private val context: Context) : BaseAdapter() {
             name.text= item.name
            Glide.with(view).load(item.image).centerCrop().into(imageView)
         }
-
         return view
     }
     private class ViewHolder(view: View) {
@@ -41,6 +40,7 @@ class LocationDetailListAdapter(private val context: Context) : BaseAdapter() {
     }
     fun setList(newResidentsList: List<Character>){
         residentsList = newResidentsList
+        notifyDataSetChanged()
     }
 
 }

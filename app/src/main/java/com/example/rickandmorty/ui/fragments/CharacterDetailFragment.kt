@@ -26,22 +26,22 @@ class CharacterDetailFragment : Fragment() {
         model.cleared()
         super.onAttach(context)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.getInt(CHARACTER_ID)?.let {
-            model.loadCharacter(it)
-        }
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        arguments?.getInt(CHARACTER_ID)?.let {
+            model.loadCharacter(it)
+        }
         return inflater.inflate(R.layout.character_details_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         val image: ImageView = view.findViewById(R.id.character_detail_image)
         val name: TextView = view.findViewById(R.id.character_detail_name)
         val gender: TextView = view.findViewById(R.id.character_detail_gender)
@@ -51,7 +51,9 @@ class CharacterDetailFragment : Fragment() {
         val adapterList = CharacterDetailListAdapter(requireContext())
         listView.adapter = adapterList
         model.episodesData.observe(this) {
-            if (it!=null)adapterList.setList(it)
+            it?.let {
+                adapterList.setList(it)
+            }
         }
         model.characterDetailData.observe(this){
             it?.let {
